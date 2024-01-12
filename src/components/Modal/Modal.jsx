@@ -1,8 +1,13 @@
-import { Component, useEffect } from 'react';
+import { useEffect } from 'react';
 import css from './Modal.module.css';
 
 export const Modal = ({ onCloseModal, modalData }) => {
   useEffect(() => {
+    const onClickESC = event => {
+      if (event.code === 'Escape') {
+        onCloseModal();
+      }
+    };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', onClickESC);
 
@@ -10,24 +15,18 @@ export const Modal = ({ onCloseModal, modalData }) => {
       document.body.style.overflow = 'auto';
       window.removeEventListener('keydown', onClickESC);
     };
-  }, []);
+  }, [onCloseModal]);
 
   // componentWillUnmount() {
   //   document.body.style.overflow = 'auto';
   //   window.removeEventListener('keydown', this.onClickESC);
   // }
-  onClickESC = event => {
-    if (event.code === 'Escape') {
-      onCloseModal();
-    }
-  };
 
   const handleCloseModal = event => {
     if (event.target === event.currentTarget) {
       onCloseModal();
     }
   };
-
   const { largeImageURl, tags } = modalData;
 
   return (

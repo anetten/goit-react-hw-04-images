@@ -95,8 +95,8 @@ export const App = () => {
       {status === STATUSES.pending && <Loader />}
       {isModalOpen && (
         <Modal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
+          isModalOpen={isModalOpen}
+          onCloseModal={handleCloseModal}
           modalData={modalData}
         />
       )}
